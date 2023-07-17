@@ -3,6 +3,12 @@ SmsPva.com PHP SDK
 
 ---
 
+# Installation
+
+``
+composer require php-core/smspva
+``
+
 # Examples
 ### Get number
 
