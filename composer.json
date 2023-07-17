@@ -1,0 +1,18 @@
+{
+  "name": "php-core/smspva",
+  "authors": [
+    {
+      "name": "RealEase Software",
+      "email": "php@realease.email"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PHPCore\\SmsPva\\": "src",
+      "PHPCore\\SMSPVA\\Response\\": "src/responses"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.7"
+  }
+}
