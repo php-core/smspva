@@ -4,8 +4,11 @@ namespace PHPCore\SmsPva;
 
 abstract class ApiResponse
 {
-	protected int $response;
+	protected ?string $response = null;
 
+	/**
+	 * @throws \Exception
+	 */
 	public function __construct(array $responseArray)
 	{
 		foreach ($responseArray as $key => $value) {
@@ -13,12 +16,18 @@ abstract class ApiResponse
 				$this->$key = $value;
 			}
 		}
+		$reflection = new \ReflectionClass($this);
+		foreach ($reflection->getProperties() as $property) {
+			if (!$property->isInitialized($this)) {
+				throw new \Exception('Property "' . $property->getName() . '" was not initialized');
+			}
+		}
 	}
 
 	/**
-	 * @return int
+	 * @return string|null
 	 */
-	public function getResponseType(): int
+	public function getResponseType(): ?string
 	{
 		return $this->response;
 	}

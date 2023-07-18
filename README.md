@@ -3,6 +3,8 @@ SmsPva.com PHP SDK
 
 ---
 
+### This library requires min. PHP 8.0
+
 # Installation
 
 ``

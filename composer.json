@@ -2,10 +2,11 @@
   "name": "php-core/smspva",
   "type": "library",
   "version": "0.0.1",
+  "license": "MIT",
   "authors": [
     {
-      "name": "RealEase Software",
-      "email": "php@realease.email"
+      "name": "iSecNew10",
+      "email": "php@isecnew10.com"
     }
   ],
   "autoload": {
@@ -15,6 +16,7 @@
     }
   },
   "require": {
+    "php": "8.*",
     "guzzlehttp/guzzle": "^7.7"
   }
 }

@@ -27,7 +27,7 @@ class Api
 		"Превышено количество попыток!" => "Set a longer interval between calls to API server",
 		"Произошла неизвестная ошибка." => "Try to repeat your request later.",
 		"Неверный запрос." => "Check the request syntax and the list of parameters used (can be found on the page with method description).",
-		"Произошла внутренняя ошибка сервера." => "Try to repeat your request later."
+		"Произошла внутренняя ошибка сервера." => "Try to repeat your request later.",
 	];
 
 	private string $apiKey;
@@ -160,7 +160,7 @@ class Api
 			'metod' => 'get_sms',
 			'service' => $service,
 			'country' => $country,
-			'id' => $numberId
+			'id' => $numberId,
 		]));
 	}
 
@@ -173,7 +173,7 @@ class Api
 			'metod' => 'denial',
 			'service' => $service,
 			'country' => $country,
-			'id' => $numberId
+			'id' => $numberId,
 		]);
 	}
 
@@ -185,7 +185,7 @@ class Api
 		return $this->makeRequest([
 			'metod' => 'get_clearsms',
 			'service' => $service,
-			'id' => $orderId
+			'id' => $orderId,
 		]);
 	}
 
@@ -236,8 +236,8 @@ class Api
 		try {
 			$response = $client->request('GET', self::$API_BASE_URL, [
 				'query' => array_merge($queryParams, [
-					'apikey' => $this->apiKey
-				])
+					'apikey' => $this->apiKey,
+				]),
 			]);
 
 			$body = $response->getBody()->getContents();
@@ -273,6 +273,7 @@ class Api
 				if (isset($decodedBody['clearsms'])) {
 					throw new ApiException($decodedBody['clearsms']);
 				}
+				throw new ApiException('Error for following response: ' . $body);
 			}
 
 			return $decodedBody;
