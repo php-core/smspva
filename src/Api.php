@@ -155,14 +155,18 @@ class Api
 	/**
 	 * @throws Exception
 	 */
-	public function getSms(string $service, string $country, int $numberId): Sms
+	public function getSms(string $service, string $country, int $numberId, ?bool $reSms = false): Sms
 	{
-		return new Sms($this->makeRequest([
+		$queryParams = [
 			'metod' => 'get_sms',
 			'service' => $service,
 			'country' => $country,
 			'id' => $numberId,
-		]));
+		];
+		if (!empty($reSms)) {
+			$queryParams['sms'] = 'sms';
+		}
+		return new Sms($this->makeRequest($queryParams));
 	}
 
 	/**
