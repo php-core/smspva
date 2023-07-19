@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use PHPCore\SMSPVA\Response\Balance;
+use PHPCore\SMSPVA\Response\ClearSms;
 use PHPCore\SMSPVA\Response\CountNew;
 use PHPCore\SMSPVA\Response\Number;
 use PHPCore\SMSPVA\Response\Prices;
@@ -180,13 +181,13 @@ class Api
 	/**
 	 * @throws Exception
 	 */
-	public function getClearSms(string $service, int $orderId): array
+	public function getClearSms(string $service, int $orderId): ClearSms
 	{
-		return $this->makeRequest([
+		return new ClearSms($this->makeRequest([
 			'metod' => 'get_clearsms',
 			'service' => $service,
 			'id' => $orderId,
-		]);
+		]));
 	}
 
 	/**
